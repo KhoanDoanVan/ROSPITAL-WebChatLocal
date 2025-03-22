@@ -7,7 +7,7 @@ model = "llama3.1"
 while True:
     user_input = input("Bạn: ")
     if user_input.lower() in ["exit", "quit"]:
-        print("Tạm biệt! 👋")
+        print("Tạm biệt!")
         break
     
     response = ollama.chat(model=model, messages=[{"role": "user", "content": user_input}])
