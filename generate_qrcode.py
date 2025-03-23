@@ -1,14 +1,28 @@
 import qrcode
+import os
+import socket
 
+def get_wifi_ip():
+    try:
+        s = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
+        s.connect(("8.8.8.8", 80))  # Google DNS
+        ip_address = s.getsockname()[0]
+        s.close()
+        return ip_address
+    except Exception as e:
+        print("⚠️ Can't get IP WiFi:", e)
+        return "127.0.0.1"
 
-ip_address = "192.168.31.245"
-port = "2000"
+ip_address = get_wifi_ip()
+port = "2100"
 urlString = f"http://{ip_address}:{port}"
 
+qr_filename = "server_qr.png"
+
+if os.path.exists(qr_filename):
+    os.remove(qr_filename)
 
 qr = qrcode.make(urlString)
+qr.save(qr_filename)
 
-qr.save("server_qr.png")
-
-
-print(f"QR code đã được tạo! Quét để truy cập: {urlString}")
+print(f"✅ QR code : {urlString}")

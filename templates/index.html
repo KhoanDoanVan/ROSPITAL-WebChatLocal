@@ -3,21 +3,24 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Flask Web Server</title>
+  <title>Chat Box Hospital</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
 </head>
 
 <body>
-  <h1>Welcome to Mac Server! 🚀</h1>
-  <p id="message">Fetching data...</p>
+  <div class="chat-container">
+    <h2 class="chat-title">Chat Box Hospital 🚀</h2>
 
-  <button onclick="sendMessage()">
-    Click here to send data
-  </button>
+    <div id="chat-box" class="chat-box">
+      <p id="message" class="server-message">Welcome to Rospital Chat Box 🤖</p>
+    </div>
 
-  <script src="index.js"></script>
-
-  <div>
-    <h1>No Problem Brother</h1>
+    <div class="chat-input-container">
+      <input type="text" id="chat-input" placeholder="Type a message..." />
+      <button onclick="sendMessage()">Send</button>
+    </div>
   </div>
+
+  <script src="{{ url_for('static', filename='func.js') }}"></script>
 </body>
 </html>
